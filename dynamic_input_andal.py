@@ -1,0 +1,20 @@
+#This is a Dynamic Input
+
+#accept input from user
+print("HELLO THERE !")
+print("_____________")
+name = input ("Please Enter your name:")
+print("Your name is:  " + name)
+print("_______________________________")
+gender = input ("Enter your gender:")
+print("Your gender is:  " + gender)
+print("_______________________________")
+print("THIS IS BASIC MATH")
+#accept numerical input == int()
+fnum = int(input ("Enter first number: "))
+snum = int(input ("Enter second number: "))
+print("This is the Squareroot of : ")
+print("")
+to_int_value = int ("10")
+print(fnum+snum)
+print(to_int_value ** 2)
