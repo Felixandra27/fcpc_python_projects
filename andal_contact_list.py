@@ -5,24 +5,47 @@ print (" ACTIVITY B ")
 print ("-----------------------")
 
 dict={ }
-dict["FIRST NAME"]= input("Enter first name:")
-dict["LAST NAME"]= input("Enter last name:")
-dict["AGE"]= int(input("Enter age:"))
-dict["CONTACT NUMBER"]= int(input("Enter Contact Number:"))
+
 print (dict)
 for key in dict:
     print(dict[key])
-dict1={}
-dict2=[]
+
+listcontact=[]
 while True:
-    dict1["First NAME"]=str(input("Enter First Name: "))
-    if dict1["First NAME"]== "XXX":
-        break
+
+    dict1 = {}
+
+    print('1. Add a Contact')
+    print('2. Search a Contact')
+    print('3. List Down')
+
+    select = input('Select: ')
+
+    if select == '1':
+
+        FIRST_NAME = input("Enter first name:")
+        dict1["fn"] = FIRST_NAME
+        LAST_NAME= input("Enter last name:")
+        dict1["ln"] = LAST_NAME
+        AGE= int(input("Enter age:"))
+        dict1["ag"] = AGE
+        CONTACT_NUMBER= int(input("Enter Contact Number:"))
+        dict1["cn"] = CONTACT_NUMBER
+
+        listcontact.append(dict1)
+        print()
+
+    elif select == '2':
+
+        search = input ('\nSearch: ' )
+        for contact in listcontact:
+            print(contact)
+    elif select == '3':
+        print()
+        print(FIRST_NAME)
+        print(LAST_NAME)
+        print(AGE)
+        print(CONTACT_NUMBER)
+        print()
     else:
-        dict1["LAST NAME"]=str(input("Enter Last Name: "))
-        dict1["AGE"]=int(input("Enter Age: "))
-        dict1["CONTACT NUMBER"]= int(input("Enter Contact Number:"))
-        A.append(dict1)
-        print(dict1)
-        for dict2 in dict1:
-            print(dict1[dict2])
+        print('\nInvalid Selection')
