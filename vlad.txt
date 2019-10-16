@@ -1,0 +1,357 @@
+package com.company;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
+class Main {
+
+    private static final double _PC1 = 10.00;
+    private static final double _PC2 = 10.00;
+    private static final double _PC3 = 10.00;
+    private static final double _PC4 = 10.00;
+    private static final double _PC5 = 10.00;   
+    private static final double _PC6 = 20.00;   
+    private static final double _PC7 = 20.00;
+    private static final double _PC8 = 50.00;  
+    private static final double _PC9 = 50.00; 
+    private static final double _PC10 = 50.00;
+
+    private static void caculateTotalfor1hr(JTable tblOrderList, JLabel lblTotal) {
+
+        double total = 0.00;
+
+        for (int row = 0; row < tblOrderList.getRowCount(); row++) {
+
+            String price = tblOrderList.getValueAt(row, 2).toString();
+
+            double val = Double.parseDouble(price);
+
+            total += val;
+
+        }
+
+        lblTotal.setText("Total: " + total);
+
+    }
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame("Comshop Ticket");
+        JComboBox cboGender = new JComboBox();
+        JCheckBox jcbPC1 = new JCheckBox(" ? PC1 ") ;
+        JCheckBox jcbPC2 = new JCheckBox(" ? PC2 ");
+        JCheckBox jcbPC3 = new JCheckBox(" ? PC3 ");
+        JCheckBox jcbPC4 = new JCheckBox(" ? PC4 ");
+        JCheckBox jcbPC5 = new JCheckBox(" ? PC5 ");
+        JCheckBox jcbPC6 = new JCheckBox(" ? PC6 - gaming ");
+        JCheckBox jcbPC7 = new JCheckBox(" ? PC7 - gaming ");
+        JCheckBox jcbPC8 = new JCheckBox(" ? OpenHr ");
+        JCheckBox jcbPC9 = new JCheckBox(" ? OpenHr ");
+        JCheckBox jcbPC10 = new JCheckBox(" ? OpenHr ");
+        JLabel labelRental = new JLabel("COMPUTER RENTAL ? ");
+        JButton btnRent = new JButton("RENT");
+        JButton btnDelete = new JButton("Delete");
+        JButton btnTicket = new JButton("Ticket Reciept")
+        JTable tblRentList = new JTable();
+        JScrollPane jsScrollPane = new JScrollPane(tblRentList);
+        JLabel lblTotal = new JLabel("Total: 0.00");
+        btnRent.setEnabled(false);
+        cboGender.setBounds(10, 10, 250, 35);
+        jcbPC1.setBounds(10, 50, 250, 35);
+        jcbPC2.setBounds(10, 80, 250, 35);
+        jcbPC3.setBounds(10, 110, 250, 35);
+        jcbPC4.setBounds(10, 140, 250, 35);
+        jcbPC5.setBounds(10, 170, 250, 35);
+        jcbPC6.setBounds(300, 50, 250, 35);
+        jcbPC7.setBounds(300, 80, 250, 35);
+        jcbPC8.setBounds(300, 110, 250, 35);
+        jcbPC9.setBounds(300, 140, 250, 35);
+        jcbPC10.setBounds(300, 170, 250, 35);
+
+        btnRent.setBounds(10, 500, 200, 35);
+        btnDelete.setBounds(10, 550, 200, 35);
+        btnTicket.setBounds(250,530,200,35);
+        
+        jsScrollPane.setBounds(10, 230, 470, 250);
+        lblTotal.setBounds(10, 600, 200, 35);
+     
+        String gender[] = new String[]{"Pink", "Blue"};
+
+        cboGender.setModel(new DefaultComboBoxModel(gender));
+        tblRentList.setModel(new DefaultTableModel(
+
+                new String[][]{},
+                new String[]{
+
+                        "PC",
+                        "Hour",
+                        "Price"
+
+                }));
+
+        tblRentList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        frame.add(lblTotal);
+        frame.add(cboGender);
+        frame.add(jcbPC1);
+        frame.add(jcbPC2);
+        frame.add(jcbPC3);
+        frame.add(jcbPC4);
+        frame.add(jcbPC5);
+        frame.add(jcbPC6);
+        frame.add(jcbPC7);
+        frame.add(jcbPC8);
+        frame.add(jcbPC9);
+        frame.add(jcbPC10);
+        frame.add(btnRent);
+        frame.add(btnDelete);
+        frame.add(btnTicket);
+        frame.add(jsScrollPane);
+        
+        btnRent.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent ae) {
+                DefaultTableModel model = (DefaultTableModel) tblRentList.getModel();
+                String PC = "None";
+                String price = "0.00";
+                String gender1 = cboGender.getSelectedItem().toString();
+                if (jcbPC1.isSelected() && jcbPC2.isSelected()) {
+                    String[] PC1 = {"?PC1", gender1, "" + _PC1};
+                    String[] PC2 = {"?PC2", gender1, "" + _PC2};
+                    String[] PC3 = {"?PC3", gender1, "" + _PC3};
+                    String[] PC4 = {"?PC4", gender1, "" + _PC4};
+                    String[] PC5 = {"?PC5", gender1, "" + _PC5};
+                    String[] PC6 = {"?PC6", gender1, "" + _PC6};
+                    String[] PC7 = {"?PC7", gender1, "" + _PC7};
+                    String[] PC8 = {"?PC8", gender1, "" + _PC8};
+                    String[] PC9 = {"?PC9", gender1, "" + _PC9};
+                    String[] PC10 = {"?PC10", gender1,"" + _PC10};
+                    model.addRow(PC1);
+                    model.addRow(PC2);
+                } else {
+                    if (jcbPC1.isSelected()) {
+                        
+                        PC = "PC1";
+                        
+                        price = "" + _PC1;
+                        
+                    }
+                    if (jcbPC2.isSelected()) {
+                        
+                        PC = "PC2";
+                        
+                        price = "" + _PC2;
+                        
+                    }
+                    if (jcbPC3.isSelected()) {
+                        
+                        PC = "PC3";
+                        
+                        price = "" + _PC3;
+                        
+                    }
+                    if (jcbPC4.isSelected()) {
+                        
+                        PC = "PC4";
+                        
+                        price = "" + _PC4;
+                        
+                    }
+                    if (jcbPC5.isSelected()) {
+                        
+                        PC = "PC5";
+                        
+                        price = "" + _PC5;
+                        
+                    }
+                    if (jcbPC6.isSelected()) {
+                        
+                        PC = "PC6";
+                        
+                        price = "" + _PC6;
+                        
+                    }
+                    if (jcbPC7.isSelected()) {
+                        
+                        PC = "PC7";
+                        
+                        price = "" + _PC7;
+                        
+                    }
+                    if (jcbPC8.isSelected()) {
+                        
+                        PC = "PC8";
+                        
+                        price = "" + _PC8;
+                        
+                    }
+                    if (jcbPC9.isSelected()) {
+                        
+                        PC = "PC9";
+                        
+                        price = "" + _PC9;
+                        
+                    }
+                    if (jcbPC10.isSelected()) {
+                        
+                        PC = "OpenHr";
+                        
+                        price = "" + _PC10;
+                        
+                    }
+                    String[] data = {PC, gender1, price};
+                    model.addRow(data);
+                }
+                
+                caculateTotalfor1hr(tblRentList, lblTotal);
+                
+            }
+        });
+
+        jcbPC1.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC2.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+
+        jcbPC2.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC2.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC3.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC3.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC4.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC4.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC5.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC5.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC6.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC6.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC7.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC7.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC8.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC8.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC9.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC9.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+        jcbPC10.addActionListener((ActionEvent ae) -> {
+            if (jcbPC1.isSelected() || jcbPC10.isSelected()) {
+                
+                btnRent.setEnabled(true);
+                
+            } else {
+                
+                btnRent.setEnabled(false);
+                
+            }
+        });
+
+        
+       btnDelete.addActionListener((ActionEvent ae) -> {
+            int selectedRow = tblRentList.getSelectedRow();
+            
+            DefaultTableModel model = (DefaultTableModel) tblRentList.getModel();
+            
+            if (selectedRow < 0) {
+                
+                JOptionPane.showMessageDialog(null, "Please select a PC error to delete!", "No PC selected", JOptionPane.ERROR_MESSAGE);
+                
+            } else {
+                
+                model.removeRow(selectedRow);
+                
+                caculateTotalfor1hr(tblRentList, lblTotal);
+                
+            }
+        });
+//       btnTicket.addActionListener((ActionEvent ae) -> {
+//           
+//       });
+        frame.setSize(500, 900);
+        frame.setLayout(null);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
